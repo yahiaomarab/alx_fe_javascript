@@ -35,20 +35,27 @@ function createAddQuoteForm() {
     return;
   }
 
-  quotes.push({ text, category });
+  // Create a new quote object
+  const newQuote = { text, category };
 
+  // Add the new quote to the array
+  quotes.push(newQuote);
+
+  // Clear the input fields
   newQuoteText.value = "";
   newQuoteCategory.value = "";
 
   // Create a new paragraph element to display the added quote
   const quoteElement = document.createElement("p");
-  quoteElement.textContent = `"${newQuote.text}" - ${newQuote.category}`;
-
+  const addedQuote = document.getElementById('added-quote')
+  quoteElement.textContent = `"${newQuote.text}" - ${newQuote.category}"`; // Now `newQuote` is properly referenced
+  
   // Append the new quote to the quote display section
-  quoteDisplay.appendChild(quoteElement);
+  addedQuote.appendChild(quoteElement);
 
   alert("New quote added!");
 }
+
 
 newQuoteButton.addEventListener("click", showRandomQuote);
 addQuoteButton.addEventListener("click", createAddQuoteForm);
