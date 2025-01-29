@@ -20,7 +20,7 @@ const quotes = [
     quoteDisplay.innerHTML = `${randomQuote.text} - ${randomQuote.category}`;
   }
   
-  function addQuote() {
+  function createAddQuoteForm() {
     const text = newQuoteText.value.trim();
     const category = newQuoteCategory.value.trim();
   
