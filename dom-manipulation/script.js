@@ -33,6 +33,14 @@ const quotes = [
   
     newQuoteText.value = "";
     newQuoteCategory.value = "";
+
+     // Create a new paragraph element to display the added quote
+  const quoteElement = document.createElement("p");
+  quoteElement.textContent = `"${newQuote.text}" - ${newQuote.category}`;
+
+  // Append the new quote to the quote display section
+  quoteDisplay.appendChild(quoteElement);
+
   
     alert("New quote added!");
   }
