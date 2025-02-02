@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         saveQuotes();
         populateCategories(); // Ensure categories are updated after sync
-        alert("Data synchronized with the server.");
+        alert("Quotes synced with server!");
       } else {
         alert("No new data from the server.");
       }
