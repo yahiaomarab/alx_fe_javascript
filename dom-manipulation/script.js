@@ -11,7 +11,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputFile = document.getElementById("importFile");
   const exportQuotesButton = document.getElementById("exportQuotes");
   const categoriesSelection = document.getElementById("categoryFilter");
+  
 
+
+  async function fetchQuotesFromServer() {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const serverQuotes = await response.json();
+      syncQuotes(serverQuotes);
+    } catch (error) {
+      console.error('Error fetching quotes:', error);
+    }
+  }
+
+  // Sync local quotes with server quotes
+  function syncQuotes(serverQuotes) {
+    // Implement conflict resolution: prioritize server data
+    const updatedQuotes = serverQuotes.map(serverQuote => {
+      const localQuote = quotes.find(q => q.id === serverQuote.id);
+      return localQuote && localQuote.updatedAt > serverQuote.updatedAt
+        ? localQuote
+        : serverQuote;
+    });
+
+    // Update local quotes
+    quotes = updatedQuotes;
+    saveQuotes();
+    populateCategories();
+    showRandomQuote();
+  }
   function loadQuotes() {
     const storedQuotes = JSON.parse(localStorage.getItem("quotes") || "[]");
     quotes = storedQuotes; // Load quotes into the array
@@ -137,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
   exportQuotesButton.addEventListener("click", exportQuotes);
   inputFile.addEventListener("change", importFromJsonFile);
   categoriesSelection.addEventListener("change", showRandomQuote);
+  fetchQuotesFromServer();
   loadQuotes();
   populateCategories();
   showRandomQuote();
