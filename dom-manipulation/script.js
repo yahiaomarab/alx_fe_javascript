@@ -30,12 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function showRandomQuote() {
+  function filterQuotes() {
     const selectedCategory = categoriesSelection.value;
-    const filteredQuotes =
-      selectedCategory === "all"
-        ? quotes
-        : quotes.filter((quote) => quote.category === selectedCategory);
+    return selectedCategory === "all"
+      ? quotes
+      : quotes.filter((quote) => quote.category === selectedCategory);
+  }
+  function showRandomQuote() {
+    const filteredQuotes = filterQuotes();
 
     if (filteredQuotes.length === 0) {
       quoteDisplay.innerHTML = "No quotes available for this category.";
