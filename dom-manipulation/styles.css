@@ -29,7 +29,21 @@ body {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    margin-bottom: 1%;
   }
   button:hover {
     background-color: #45a049;
+  }
+  select{
+    background-color:#ccc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 1%;
+    width: 50%;
+  }
+  #added-quote{
+    display: none;
   }
