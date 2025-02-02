@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function syncDataWithServer() {
+  function syncQuotes() {
     fetchQuotesFromServer().then((serverQuotes) => {
       if (serverQuotes.length > 0) {
         serverQuotes.forEach((serverQuote) => {
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  setInterval(syncDataWithServer, 1 * 60 * 1000);
+  setInterval(syncQuotes, 1 * 60 * 1000);
   newQuoteButton.addEventListener("click", showRandomQuote);
   addQuoteButton.addEventListener("click", () => {
     createAddQuoteForm();
